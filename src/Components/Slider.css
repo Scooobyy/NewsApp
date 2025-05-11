@@ -1,0 +1,15 @@
+/* src/Components/Slider.css */
+.background-slider {
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+    position: relative;
+  }
+  
+  .slider-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* optional overlay */
+    min-height: 100vh;
+  }
+  

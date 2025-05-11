@@ -1,0 +1,60 @@
+/* Navbar Base */
+.navbar {
+    background-color: #0b1f3a !important; /* Deep navy blue */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .navbar-brand {
+    color: #ffffff !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #d1d1d1 !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ffce0a !important; /* Accent color (orange/yellow) */
+  }
+  
+  .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+    border-bottom: 2px solid #fca311;
+  }
+  
+  .dropdown-menu {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-item {
+    color: #333333;
+    transition: background-color 0.2s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #fca311;
+    color: white;
+  }
+  
+  .dropdown-divider {
+    border-top: 1px solid #dddddd;
+  }
+  
+ 
+  
+  /* Toggle icon for mobile */
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+  
+  

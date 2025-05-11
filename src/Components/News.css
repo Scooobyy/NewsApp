@@ -1,0 +1,167 @@
+/* News.css */
+.container {
+  max-width: 1250px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f3e1;  /* Soft vintage cream background */
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #d9534f;  /* Retro Red */
+  font-family: 'Press Start 2P', cursive; /* Retro pixel font */
+}
+
+/* News Item Styles */
+.news-card {
+  background-color: #fff;  /* White background for a clean vintage look */
+  border-radius: 12px;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(255, 255, 255, 0.2); /* Soft shadows */
+  margin-bottom: 30px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #d9534f;  /* Retro border */
+  background: linear-gradient(135deg, #f7c6c7, #f1f1f1);  /* Soft gradient background */
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 0, 255, 0.2); /* Glow on hover */
+}
+
+.news-card img {
+  width: 200%;
+  height: 75%;  /* Make the image take up 50% of the card height */
+  object-fit: cover;
+  filter: brightness(0.8) sepia(0.3); /* Slight sepia filter for vintage feel */
+}
+
+.news-card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 80%;  /* Make the text take up the remaining 50% of the card height */
+  background-color: #f7f7f7;  /* Soft background for the text section */
+  border-top: 2px solid #d9534f;  /* Retro border top */
+}
+
+.news-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #d9534f;  /* Retro Red */
+  font-family: 'Times New Roman', serif;  /* Vintage serif font */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);  /* Subtle text shadow for vintage effect */
+}
+
+.news-description {
+  font-size: 0.5rem;
+  color: #5f4b3a;  /* Warm brown color */
+  flex-grow: 1;
+  margin-bottom: 5%;
+}
+
+.news-link {
+  text-decoration: none;
+  color: #fff;
+  background-color: #d9534f;  /* Retro Red */
+  padding: 8px 14px;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  font-family: 'Courier New', Courier, monospace; /* Retro typewriter font */
+}
+
+.news-link:hover {
+  background-color: #c9302c;  /* Darker red on hover */
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Soft shadow on hover */
+}
+
+/* Retro Effect for News Card */
+.news-glass-tile {
+  position: relative;
+  width: 400px;
+  height: 450px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 255, 255, 0.1); /* Soft shadows */
+  transition: transform 0.4s ease;
+}
+
+.news-glass-tile:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 255, 255, 0.3); /* Retro glow */
+}
+
+.news-glass-overlay {
+  width: 100%;
+  padding: 20px;
+  background: #f7f7f7;  /* Light vintage background */
+  border-radius: 30px;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 0, 255, 0.1); /* Soft glowing edges */
+}
+
+.glass-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #d9534f;  /* Retro Red */
+  font-family: 'Times New Roman', serif; /* Vintage serif font */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);  /* Subtle text shadow for vintage effect */
+}
+
+.glass-desc {
+  font-size: 1rem;
+  color: #5f4b3a;  /* Warm brown color */
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.glass-button {
+  background-color: #d9534f;  /* Retro Red */
+  padding: 8px 14px;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  font-family: 'Courier New', Courier, monospace; /* Retro typewriter font */
+}
+
+.glass-button:hover {
+  background-color: #c9302c;  /* Darker red on hover */
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Soft shadow on hover */
+}
+
+/* Fade-in Animation for Scroll */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+}
