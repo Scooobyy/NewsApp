@@ -18,15 +18,25 @@ const About = () => {
     });
   };
 
-  useEffect(() => {
-    // Add event listener to handle scroll
-    window.addEventListener('scroll', handleScroll);
+ useEffect(() => {
+  const isInViewport = (element) => {
+    const rect = element.getBoundingClientRect();
+    return rect.top >= 0 && rect.bottom <= window.innerHeight;
+  };
 
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const handleScroll = () => {
+    const elements = document.querySelectorAll('.scroll-fade');
+    elements.forEach((element) => {
+      if (isInViewport(element)) {
+        element.classList.add('visible');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
 
   return (
     <div>
