@@ -57,4 +57,28 @@
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   }
   
-  
+  /* Center the navbar items */
+.navbar-nav {
+  display: flex;
+  justify-content: center; /* Centers the items */
+  width: 100%;
+}
+
+.navbar-nav .nav-item {
+  margin: 0 15px; /* Add some spacing between items */
+}
+
+/* Optional: To center the search bar in the navbar */
+.navbar .collapse {
+  display: flex;
+  justify-content: center; /* Center the search bar */
+  width: 100%;
+}
+
+.form-control {
+  width: 300px; /* Adjust the width of the search input */
+}
+
+.btn-outline-success {
+  margin-left: 10px; /* Space between the search input and button */
+}

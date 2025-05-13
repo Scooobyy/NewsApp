@@ -5,7 +5,7 @@ export class Newsitem extends Component {
   render() {
     const { title, description, imageUrl, newsUrl ,author,date} = this.props;
     // author,date
-    const fallbackImage = "https://static0.givemesportimages.com/wordpress/wp-content/uploads/2024/05/jean-philippe-mateta.jpg";
+    const fallbackImage = "https://media.istockphoto.com/id/472226477/photo/smart-world.webp?s=2048x2048&w=is&k=20&c=r-M9HPuRJo5I3mnvuTEDjw1r8j4fxH1LTvYsc0DmGn4=";
 
     return (
       <div className="news-glass-tile" style={{ backgroundImage: `url(${imageUrl || fallbackImage})` }}>

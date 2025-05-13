@@ -20,25 +20,27 @@ export default class App extends Component {
 
   render() {
     return (
-      <Slider>
-        <Router>
-          <Navbar onSearch={this.handleSearch} />
-          <Routes>
-            <Route
-              path="/"
-              element={<News key={this.state.searchQuery} query={this.state.searchQuery} />}
-            />
-            <Route exact path="/about" element={<About />} />
-            
-            {/* ✅ Category Routes */}
-            <Route path="/business" element={<News key="business" query="business" />} />
-            <Route path="/entertainment" element={<News key="entertainment" query="entertainment" />} />
-            <Route path="/general" element={<News key="general" query="general" />} />
-            <Route path="/health" element={<News key="health" query="health" />} />
-            <Route path="/sports" element={<News key="sports" query="sports" />} />
-          </Routes>
-        </Router>
-      </Slider>
+      <>
+        <Slider />
+        <div style={{ paddingTop: '0vh' }}>
+          <Router>
+            <Navbar onSearch={this.handleSearch} />
+            <Routes>
+              <Route
+                path="/"
+                element={<News key={this.state.searchQuery} query={this.state.searchQuery} />}
+              />
+              <Route exact path="/about" element={<About />} />
+
+              {/* ✅ Category Routes */}
+              <Route path="/business" element={<News key="business" query="business" />} />
+              <Route path="/general" element={<News key="general" query="general" />} />
+              <Route path="/health" element={<News key="health" query="health" />} />
+              <Route path="/sports" element={<News key="sports" query="sports" />} />
+            </Routes>
+          </Router>
+        </div>
+      </>
     );
   }
 }

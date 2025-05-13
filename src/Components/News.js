@@ -12,13 +12,13 @@ export class News extends Component {
       pageSize: 6,
       totalResults: 0,
     };
-    this.loaderRef = createRef(); // 👈 Reference to the loader div
+    this.loaderRef = createRef(); // Reference for IntersectionObserver
   }
 
   componentDidMount() {
     this.fetchArticles(this.state.page);
 
-    // Set up IntersectionObserver for infinite scrolling
+    // Infinite scroll observer
     this.observer = new IntersectionObserver(
       (entries) => {
         const target = entries[0];
@@ -34,14 +34,14 @@ export class News extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.query !== this.props.query) {
-      // Reset articles when the query changes
-      this.setState({ articles: [], page: 1 }, () => {
-        this.fetchArticles(1);
-      });
-    }
+ componentDidUpdate(prevProps) {
+  if (prevProps.query !== this.props.query) {
+    // Reset articles when the query changes
+    this.setState({ articles: [], page: 1 }, () => {
+      this.fetchArticles(1);
+    });
   }
+}
 
   componentWillUnmount() {
     if (this.observer && this.loaderRef.current) {
@@ -61,19 +61,22 @@ export class News extends Component {
 
       console.log('API Response:', parsedData);
 
-      if (parsedData && parsedData.articles && Array.isArray(parsedData.articles)) {
+      if (parsedData && Array.isArray(parsedData.articles)) {
         this.setState((prevState) => ({
-          articles: [...prevState.articles, ...parsedData.articles], // Append new articles
+          articles:
+            page === 1
+              ? parsedData.articles
+              : [...prevState.articles, ...parsedData.articles],
           totalResults: parsedData.totalResults,
           page,
           loading: false,
         }));
       } else {
-        console.error('No articles found or response format is incorrect');
+        console.error('No articles or bad format');
         this.setState({ loading: false });
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Fetch error:', error);
       this.setState({ loading: false });
     }
   };
@@ -87,44 +90,97 @@ export class News extends Component {
     }
   };
 
+  handlePrevClick = () => {
+    if (this.state.page > 1) {
+      const newPage = this.state.page - 1;
+      this.setState(
+        { page: newPage, articles: [] },
+        () => this.fetchArticles(newPage)
+      );
+    }
+  };
+
+  handleNextClick = () => {
+    const { page, pageSize, totalResults } = this.state;
+    const maxPage = Math.ceil(totalResults / pageSize);
+
+    if (page + 1 <= maxPage) {
+      const newPage = page + 1;
+      this.setState(
+        { page: newPage, articles: [] },
+        () => this.fetchArticles(newPage)
+      );
+    }
+  };
+
   render() {
-    const { articles, loading } = this.state;
+     const { articles, loading, page, pageSize, totalResults } = this.state;
 
-    return (
-      <div className="container my-1">
-        <h2 className="text-center mb-4">📰 DailyIndianTimes - Top Headlines</h2>
+  return (
+    <div className="container my-1" style={{ paddingBottom: '100px' }}>
+      <h2 className="text-center mb-4">📰 DailyIndianTimes - Top Headlines</h2>
 
-        <div className="row">
-          {articles.map((element, index) => (
-            <div className="col-md-4" key={index}>
-              <NewsItem
-                title={element.title ? element.title.slice(0, 20) + '...' : 'No Title'}
-                description={element.description ? element.description.slice(0, 40) + '...' : 'No Description'}
-                imageUrl={element.urlToImage}
-                newsUrl={element.url}
-                author={element.author}
-                date={element.publishedAt}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Loader */}
-        {loading && (
-          <h4 className="text-center mt-4">
-            <img
-              src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e596a334-ec86-4a84-96df-17900077efc2/d7gwtxy-a0648d53-d900-425d-85e4-96fdeb5e7968.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTpmaWxlLmRvd25sb2FkIl0sIm9iaiI6W1t7InBhdGgiOiIvZi9lNTk2YTMzNC1lYzg2LTRhODQtOTZkZi0xNzkwMDA3N2VmYzIvZDdnd3R4eS1hMDY0OGQ1My1kOTAwLTQyNWQtODVlNC05NmZkZWI1ZTc5NjguZ2lmIn1dXX0.EUXeqrmX0WznMmIeDsU2e2oViUjumxXkYxFrK3A1OOY"
-              alt="loading"
-              style={{ width: '80px', height: '80px' }}
+      <div className="row">
+        {articles.map((element, index) => (
+          <div className="col-md-4" key={index}>
+            <NewsItem
+              title={element.title ? element.title.slice(0, 20) + '...' : 'No Title'}
+              description={element.description ? element.description.slice(0, 40) + '...' : 'No Description'}
+              imageUrl={element.urlToImage}
+              newsUrl={element.url}
+              author={element.author}
+              date={element.publishedAt}
             />
-          </h4>
-        )}
-
-        {/* IntersectionObserver trigger */}
-        <div ref={this.loaderRef}></div>
+          </div>
+        ))}
       </div>
-    );
-  }
+
+      {/* Loading Spinner */}
+      {loading && (
+        <h4 className="text-center mt-4">
+          <img
+            src="https://i.pinimg.com/originals/0b/f2/85/0bf2854f6e017a49d461c719402425dc.gif"
+            alt="loading"
+            style={{ width: '80px', height: '80px' }}
+          />
+        </h4>
+      )}
+
+      {/* Intersection Observer Target */}
+      <div ref={this.loaderRef}></div>
+
+      {/* Sticky Footer Navigation Buttons */}
+      <div
+        className="sticky-footer d-flex justify-content-between p-3  shadow"
+        style={{
+          
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 0,
+        }}
+      >
+        <button
+          disabled={page <= 1}
+          className="btn btn-primary"
+          onClick={this.handlePrevClick}
+        >
+          &larr; Previous
+        </button>
+        <span className="mt-2">Page {page} of {Math.ceil(totalResults / pageSize)}</span>
+        <button
+          disabled={page + 1 > Math.ceil(totalResults / pageSize)}
+          className="btn btn-primary"
+          onClick={this.handleNextClick}
+        >
+          Next &rarr;
+        </button>
+      </div>
+    </div>
+    
+  );
+}
 }
 
 export default News;

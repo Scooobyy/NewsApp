@@ -26,19 +26,23 @@ export default class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-ul">
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0 nav-ul"> {/* Center the nav items */}
               <li className="nav-item">
                 <NavLink to="/" className="nav-link" activeClassName="active">Home</NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/Business" className="nav-link" activeClassName="active">Business</NavLink>
-              </li>
+
               <li className="nav-item">
                 <NavLink to="/General" className="nav-link" activeClassName="active">General</NavLink>
               </li>
+
+              <li className="nav-item">
+                <NavLink to="/Business" className="nav-link" activeClassName="active">Business</NavLink>
+              </li>
+
               <li className="nav-item">
                 <NavLink to="/Health" className="nav-link" activeClassName="active">Health</NavLink>
               </li>
+
               <li className="nav-item">
                 <NavLink to="/about" className="nav-link" activeClassName="active">About</NavLink>
               </li>
