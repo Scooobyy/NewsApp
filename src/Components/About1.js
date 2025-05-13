@@ -2,41 +2,26 @@ import React, { useEffect } from 'react';
 import './About.css';
 
 const About = () => {
-  // Function to check if element is in viewport
-  const isInViewport = (element) => {
-    const rect = element.getBoundingClientRect();
-    return rect.top >= 0 && rect.bottom <= window.innerHeight;
-  };
+  useEffect(() => {
+    // Function to check if element is in viewport
+    const isInViewport = (element) => {
+      const rect = element.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= window.innerHeight;
+    };
 
-  // Function to handle scroll event
-  const handleScroll = () => {
-    const elements = document.querySelectorAll('.scroll-fade');
-    elements.forEach((element) => {
-      if (isInViewport(element)) {
-        element.classList.add('visible');
-      }
-    });
-  };
+    // Function to handle scroll event
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.scroll-fade');
+      elements.forEach((element) => {
+        if (isInViewport(element)) {
+          element.classList.add('visible');
+        }
+      });
+    };
 
- useEffect(() => {
-  const isInViewport = (element) => {
-    const rect = element.getBoundingClientRect();
-    return rect.top >= 0 && rect.bottom <= window.innerHeight;
-  };
-
-  const handleScroll = () => {
-    const elements = document.querySelectorAll('.scroll-fade');
-    elements.forEach((element) => {
-      if (isInViewport(element)) {
-        element.classList.add('visible');
-      }
-    });
-  };
-
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
-
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div>
